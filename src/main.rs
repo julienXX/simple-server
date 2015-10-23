@@ -12,7 +12,7 @@ fn main() {
         match stream {
             Ok(stream) => {
                 thread::spawn(move|| {
-                    handle_client(stream, String::from("this is an amazing test<br /> trololo"))
+                    handle_client(stream, String::from("<h1>Welcome to Nginx</h1><br />trololo"))
                 });
             }
             Err(_) => { /* connection failed */ }
@@ -27,7 +27,5 @@ fn handle_client(mut stream: TcpStream, text: String) {
 }
 
 fn response_for(body: String) -> String {
-    println!("len: {}", body.len());
-
-    format!("HTTP/1.1 200 OK\r\nContent-Type: text/html; charset=utf-8\r\ncontent-length: {}\r\n\r\n<h1>{}</h1>", body.len() + 9, body)
+    format!("HTTP/1.1 200 OK\r\nContent-Type: text/html; charset=utf-8\r\ncontent-length: {}\r\n\r\n{}", body.len(), body)
 }
