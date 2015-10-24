@@ -27,5 +27,9 @@ fn handle_client(mut stream: TcpStream, text: String) {
 }
 
 fn response_for(body: String) -> String {
-    format!("HTTP/1.1 200 OK\r\nContent-Type: text/html; charset=utf-8\r\ncontent-length: {}\r\n\r\n{}", body.len(), body)
+    format!("HTTP/1.1 200 OK\r\n\
+             Content-Type: text/html;\
+             charset=utf-8\r\n\
+             content-length: {}\r\n\r\n\
+             {}", body.len(), body)
 }
